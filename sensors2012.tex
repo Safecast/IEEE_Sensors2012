@@ -89,15 +89,13 @@
 Amid the Fukushima triple meltdown disaster of 2011, the lack of independent,
 accurate radiation measurement has been a concern. As a response, concerned
 citizen have started to take upon themselves this challenging task.
-
 We present the design of an affordable mobile radiation sensor system for
 independent citizen monitoring and cartography of radioactive contamination.
 Historically radiation measurements has had a high entry barrier for technical,
 financial, and political reasons. We show how the tremendous advances in
 information technology have been a game changer in this field. Notably, we
-leverage the open-source software and hardware paradigm can to dramatically
+leverage the open-source software and hardware paradigm to dramatically
 accelerate the development and deployment time of the system.
-
 Our design methodology allowed to prototype and deploy the system in one
 month following the Fukushima disaster. Our sensors have been since driven by
 volunteers, covering most of North-East Japan with a fine spatial resolution.
@@ -116,11 +114,11 @@ published in a format unsuitable for machine reading and the data was not
 released free of rights, making it difficult to use for academic purposes.
 
 Another drawback of this data set is that it is collected by fixed sensors.
-Fixed sensors offer a really good temporal resolution, making it suitable for
+Fixed sensors offer excellent temporal resolution, making it suitable for
 early detection of new radioactive pollutant release detection. However, it has
 a very poor spatial resolution. Since radioactive plume fall-out is notoriously
 spotty because of the airborne travel mode \cite{terada2008development}, a high
-spatial resolution is needed in order to precisely assess the contamination at
+spatial resolution is needed to precisely assess the contamination at
 the level of houses. This is necessary for multiple reasons, including, first
 of all, to assess the health hazard and plan evacuation areas accordingly, plan
 efficiently decontamination work, identify areas still suitable for farming.
@@ -134,7 +132,7 @@ and information technology have both increased the performance and lowered the
 cost of mobile sensing, making it affordable for communities of concerned
 citizen.
 
-Recently, such community-driven mobile sensor networks has emerged as a very
+Recently, such community-driven mobile sensor networks have emerged as a very
 efficient way to cover large areas in detail using much fewer sensors than a
 fixed network, at the expense of time resolution \cite{aberer2010opensense}. In
 the case of radiation contamination with Cesium 134 and Cesium 137, with
@@ -150,58 +148,61 @@ dongle, a micro-controller board and netbook. The audio output of the Geiger
 counter was plugged to an Arduino board outputting the count-per-minute (CPM)
 every five seconds over serial port. The netbook then aggregates the geographic
 location obtained from the GPS and the radiation count and writes it to a file
-every five seconds.
+every five seconds. The Geiger counter chosen is the Inspector Alert
+\cite{inspector} that uses an industry standard \cite{radiological} LND7314
+two-inch pancake tube. The Geiger counter, the Arduino board and the GPS are
+housed in a waterproof box. This box is fixed to the side of a car using a
+simple system of straps that can be easily fixed on any car by winding up a
+window on the strap as shown in Fig.  \ref{fig:thefigure} \subref{fig:subfig3}.
+A long USB cable then links the box to the netbook inside the car. Suction cups
+on the back of the box ensure that the box is firmly attached and do not
+vibrate, even driving at higher speed on the highway. Combined to its small
+form factor, this allows the sensor to be used in an unobstusive manner on most
+cars. The total hardware cost being under \$800, it is also very affordable,
+even for private individuals.
 
-The Geiger counter chosen is the Inspector Alert \cite{inspector} that uses an
-industry standard \cite{radiological} LND7314 two-inch pancake tube. The Geiger
-counter, the Arduino board and the GPS are housed in a waterproof box. This box
-is fixed to the side of a car using a simple system of straps that can be
-easily fixed on any car by winding up a window on the strap as shown in Fig.
-\ref{fig:thefigure} \subref{fig:subfig3}. A long USB cable then links the box
-to the netbook inside the car. Suction cups on the back of the box ensure that
-the box is firmly attached and do not vibrate, even driving at higher speed on
-the highway. Combined to its small form factor, this allows the sensor to be
-used in an unobstusive manner on most cars.
-
-The sensor is the workhorse of Safecast\cite{safecast}, a volunteer project
+The sensor is the workhorse of Safecast\cite{safecast}, a grass-root effort
 for the mapping of radiation in Japan. The driving of the sensors was crowd
 sourced to volunteers based in the contaminated areas in Tohoku. The sensors
-unique design allowed it to be used during daily activities, simplifing the
+unique design allowed it to be used during daily activities, simplifying the
 collection of data. As can be observed in \ref{fig:thefigure}
-\subref{fig:subfig1}, the spatial resolution allows to finely measure
+\subref{fig:subfig2}, the spatial resolution allows to finely measure
 residential areas.
 
 After collection, the data file produced is manually (as of now) uploaded to an
 online database. From this database, comprehensive maps as shown in Fig.
 \ref{fig:thefigure} \subref{fig:subfig1} are created and released. Finally, it
 is worth noting that the raw data collected is released in the public domain in
-machine readable format, allowing it to be easily reused for further research.
+machine readable format, allowing it to be easily reused for further research,
+the design of the sensor and the necessary software is being open-sourced.
+
 
 \begin{figure}[ht]
 \centering
-\subfigure[Global map]{
-  \includegraphics[width=0.3\linewidth]{figures/fusion_map.png}
-  \label{fig:subfig1}
-}
-\subfigure[Individual drive map]{
-  \includegraphics[width=0.3\linewidth]{figures/iwaki_drive.png}
-  \label{fig:subfig2}
-}
 \subfigure[The sensor]{
-  \includegraphics[width=0.3\linewidth]{figures/bgeigie.jpg}
+  \includegraphics[width=0.315\linewidth]{figures/bgeigie.jpg}
   \label{fig:subfig3}
 }
+\subfigure[Individual drive map]{
+  \includegraphics[width=0.315\linewidth]{figures/iwaki_drive.png}
+  \label{fig:subfig2}
+}
+\subfigure[Global map]{
+  \includegraphics[width=0.315\linewidth]{figures/fusion_map.png}
+  \label{fig:subfig1}
+}
   \caption[The Figure]{ 
-            \subref{fig:subfig1} Global map of collected data for the Fukushima
-            prefecture.  Each square is color coded according to the average
-            dose rate in the area covered.
-            \subref{fig:subfig2} Individual drive map. Every point correspond to a
-            single measurement. We can observe how it is possible to densely
-            cover residential areas.
             \subref{fig:subfig3} The sensor fixed on a car. The box contains the
             Geiger counter a micro-controller to count the pulses from the
             counter, a GPS USB dongle and small USB hub. We can see the USB
             cord that links to the netbook in the car.  
+            \subref{fig:subfig2} Individual drive map. Every point correspond to a
+            single measurement. We can observe how it is possible to densely
+            cover residential areas.
+            \subref{fig:subfig1} Global map of collected data for the Fukushima
+            prefecture.  Each square is color coded according to the average
+            dose rate in the area covered. The double red circles are the 20 km
+            and 30 km evacuation zones around the Fukushima Dai-ichi plan.
   }
 \label{fig:thefigure}
 \end{figure}
